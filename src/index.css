@@ -1,3 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme colors */
+    --bg-primary: 255, 255, 255;
+    --bg-secondary: 249, 250, 251;
+    --bg-tertiary: 243, 244, 246;
+    --text-primary: 17, 24, 39;
+    --text-secondary: 75, 85, 99;
+    --text-tertiary: 156, 163, 175;
+    --border-color: 229, 231, 235;
+  }
+
+  [data-theme="dark"] {
+    /* Dark theme colors */
+    --bg-primary: 10, 10, 10;
+    --bg-secondary: 18, 18, 18;
+    --bg-tertiary: 30, 30, 30;
+    --text-primary: 243, 244, 246;
+    --text-secondary: 209, 213, 219;
+    --text-tertiary: 156, 163, 175;
+    --border-color: 55, 65, 81;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: rgb(var(--bg-primary));
+    color: rgb(var(--text-primary));
+  }
+}
+
+@layer utilities {
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

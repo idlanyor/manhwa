@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faChevronLeft, faChevronRight, faHome, faBookOpen } from '@fortawesome/free-solid-svg-icons'
 
 const ReadComic = () => {
     const navigate = useNavigate()
@@ -153,17 +155,34 @@ const ReadComic = () => {
 
     if (loading) {
         return (
-            <div className="bg-[#121212] flex justify-center items-center h-screen">
-                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-indigo-500"></div>
+            <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen flex flex-col justify-center items-center transition-colors">
+                <div className="relative mb-4">
+                    <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-indigo-500"></div>
+                    <div className="absolute inset-0 rounded-full border-4 border-purple-500/20"></div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 font-semibold">Memuat Chapter...</p>
             </div>
         )
     }
 
     if (error) {
         return (
-            <div className="bg-[#121212] min-h-screen text-center text-red-400 p-4 pt-10">
-                <h2>Terjadi Kesalahan</h2>
-                <p>{error.message}</p>
+            <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen transition-colors">
+                <div className="flex justify-center items-center min-h-screen p-4">
+                    <div className="bg-red-500/10 border border-red-500/50 rounded-2xl p-8 text-center backdrop-blur-sm max-w-md">
+                        <svg className="w-16 h-16 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h2 className="text-xl font-bold text-red-400 mb-2">Terjadi Kesalahan</h2>
+                        <p className="text-red-300 mb-6">{error.message}</p>
+                        <button
+                            onClick={handleBack}
+                            className="px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-500 hover:to-purple-500 transition-all"
+                        >
+                            Kembali
+                        </button>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -172,71 +191,102 @@ const ReadComic = () => {
     const hasPrev = !!navigation.previousChapter
 
     return (
-        <div className="bg-[#121212] min-h-screen">
-            <div className="fixed top-0 left-0 right-0 bg-[#1e1e1e] shadow-lg py-4 px-6 z-20 flex justify-between items-center border-b border-gray-700">
-                <button 
-                    onClick={handleBack}
-                    className="text-gray-400 hover:text-white"
-                >
-                    ← Kembali
-                </button>
-                <h2 className="text-sm md:text-lg font-bold text-center truncate max-w-[50%] text-white">
-                    {comicTitle} - Chapter {chapterNumber || 'Unknown'}
-                </h2>
-                <div className="w-10"></div>
-            </div>
+        <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen transition-colors">
+            {/* Top Navigation Bar */}
+            <div className="fixed top-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-200 dark:border-gray-800 transition-colors">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between items-center h-16">
+                        {/* Back Button */}
+                        <button
+                            onClick={handleBack}
+                            className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors font-semibold"
+                        >
+                            <FontAwesomeIcon icon={faArrowLeft} />
+                            <span className="hidden sm:inline">Kembali</span>
+                        </button>
 
-            <div 
-                className="fixed top-16 left-0 right-0 h-1 bg-gray-700 z-20"
-                style={{ zIndex: 30 }}
-            >
-                <div 
-                    className="bg-indigo-500 h-full" 
-                    style={{ width: `${scrollProgress}%` }}
-                />
-            </div>
+                        {/* Title */}
+                        <div className="flex items-center gap-2 flex-1 justify-center mx-4">
+                            <FontAwesomeIcon icon={faBookOpen} className="text-indigo-600 dark:text-indigo-400 hidden sm:inline" />
+                            <h2 className="text-sm md:text-base font-bold text-center truncate text-gray-900 dark:text-white">
+                                {comicTitle} - <span className="text-indigo-600 dark:text-indigo-400">Chapter {chapterNumber || 'Unknown'}</span>
+                            </h2>
+                        </div>
 
-            <div className="pt-20 pb-20"> 
-                {pages.map((page, index) => (
-                    <img 
-                        key={index} 
-                        src={page} 
-                        alt={`Halaman ${index + 1}`}
-                        className="max-w-full h-auto object-contain block mx-auto"
-                        loading="lazy"
+                        {/* Home Button */}
+                        <button
+                            onClick={() => navigate('/')}
+                            className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
+                        >
+                            <FontAwesomeIcon icon={faHome} />
+                        </button>
+                    </div>
+                </div>
+
+                {/* Progress Bar */}
+                <div className="h-1 bg-gray-200 dark:bg-gray-800">
+                    <div
+                        className="h-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-150"
+                        style={{ width: `${scrollProgress}%` }}
                     />
-                ))}
+                </div>
             </div>
 
-            <div className="fixed bottom-0 left-0 right-0 bg-[#1e1e1e] shadow-lg py-2 px-2 z-20 flex justify-between items-center border-t border-gray-700">
-            
-                <button 
-                    onClick={handlePrevChapter}
-                    disabled={!hasPrev}
-                    className={`px-4 py-2 rounded-lg font-semibold transition duration-300 ${
-                        hasPrev 
-                            ? 'bg-indigo-700 text-white hover:bg-indigo-600' 
-                            : 'bg-gray-700 text-gray-500 cursor-not-allowed'
-                    }`}
-                >
-                    &larr; Prev Chapter
-                </button>
-                
-                <span className="text-sm text-gray-400 hidden sm:inline">
-                    Akhir Chapter
-                </span>
+            {/* Comic Pages */}
+            <div className="pt-[68px] pb-24">
+                <div className="max-w-4xl mx-auto">
+                    {pages.map((page, index) => (
+                        <div key={index} className="relative">
+                            <img
+                                src={page}
+                                alt={`Halaman ${index + 1}`}
+                                className="w-full h-auto object-contain block"
+                                loading="lazy"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-                <button 
-                    onClick={handleNextChapter}
-                    disabled={!hasNext}
-                    className={`px-4 py-2 rounded-lg font-semibold transition duration-300 ${
-                        hasNext 
-                            ? 'bg-indigo-700 text-white hover:bg-indigo-600' 
-                            : 'bg-gray-700 text-gray-500 cursor-not-allowed'
-                    }`}
-                >
-                    Next Chapter &rarr;
-                </button>
+            {/* Bottom Navigation Bar */}
+            <div className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-2xl z-50 border-t border-gray-200 dark:border-gray-800 transition-colors">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between items-center py-4 gap-4">
+                        {/* Previous Chapter Button */}
+                        <button
+                            onClick={handlePrevChapter}
+                            disabled={!hasPrev}
+                            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                                hasPrev
+                                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-500 hover:to-purple-500 shadow-lg hover:shadow-indigo-500/50 hover:scale-105'
+                                    : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-600 cursor-not-allowed'
+                            }`}
+                        >
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                            <span className="hidden sm:inline">Previous</span>
+                        </button>
+
+                        {/* Chapter Info */}
+                        <div className="text-center">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Chapter</p>
+                            <p className="text-lg font-bold text-gray-900 dark:text-white">{chapterNumber}</p>
+                        </div>
+
+                        {/* Next Chapter Button */}
+                        <button
+                            onClick={handleNextChapter}
+                            disabled={!hasNext}
+                            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                                hasNext
+                                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-500 hover:to-purple-500 shadow-lg hover:shadow-indigo-500/50 hover:scale-105'
+                                    : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-600 cursor-not-allowed'
+                            }`}
+                        >
+                            <span className="hidden sm:inline">Next</span>
+                            <FontAwesomeIcon icon={faChevronRight} />
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     )
