@@ -1,0 +1,45 @@
+services:
+  # Frontend Service (React/Vite dengan Nginx)
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8072:80"
+    container_name: kanata-toon-frontend
+    depends_on:
+      - backend
+    networks:
+      - manhwa-network
+    restart: unless-stopped
+
+  # Backend Service (Hono API Server)
+  backend:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    ports:
+      - "8062:8062"
+    container_name: kanata-toon-backend
+    environment:
+      - PORT=8062
+      - NODE_ENV=production
+    volumes:
+      # Mount volume untuk persistence database SQLite
+      - backend-data:/app/data
+    networks:
+      - manhwa-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8062/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+networks:
+  manhwa-network:
+    driver: bridge
+
+volumes:
+  backend-data:

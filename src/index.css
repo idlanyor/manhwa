@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,6 +34,37 @@
     background-color: rgb(var(--bg-primary));
     color: rgb(var(--text-primary));
   }
+
+  /* Optimize font loading with font-display swap */
+  @font-face {
+    font-family: 'Playpen Sans';
+    font-display: swap;
+  }
+
+  /* Prevent CLS - Ensure images maintain aspect ratio */
+  img {
+    content-visibility: auto;
+  }
+
+  /* CSS Containment for better performance */
+  .card-container {
+    contain: layout style paint;
+  }
+
+  /* Aspect ratio containers to prevent layout shift */
+  .aspect-comic-cover {
+    aspect-ratio: 2 / 3;
+    position: relative;
+  }
+
+  .aspect-comic-cover img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 @layer utilities {
@@ -58,5 +87,58 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Performance optimizations - GPU acceleration */
+  .gpu-accelerate {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Will-change for hover animations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* Content visibility for better rendering performance */
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+
+  /* Optimize animations with composite layers */
+  .smooth-transform {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Remove will-change after animation */
+  .smooth-transform:not(:hover):not(:focus) {
+    will-change: auto;
+  }
+
+  /* Optimize scrolling performance */
+  .scroll-optimize {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Skeleton loader shimmer animation */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
   }
 }

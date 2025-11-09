@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import SkeletonLoader from '../SkeletonLoader'
 
 const CardTerbaruComic = () => {
     const [comics, setComics] = useState([])
@@ -71,11 +72,17 @@ const CardTerbaruComic = () => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-screen bg-gray-50 dark:bg-gray-900">
-                <div className="relative">
-                    <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-indigo-500"></div>
-                    <div className="absolute inset-0 rounded-full border-4 border-purple-500/20"></div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div className="flex items-center gap-3 mb-8">
+                    <div className="flex items-center gap-2">
+                        <div className="w-1 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></div>
+                        <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                            Terbaru Hari Ini
+                        </h2>
+                    </div>
+                    <div className="flex-1 h-px bg-gradient-to-r from-gray-300 dark:from-gray-700 to-transparent"></div>
                 </div>
+                <SkeletonLoader count={12} type="card" />
             </div>
         )
     }
@@ -117,6 +124,10 @@ const CardTerbaruComic = () => {
                             <img
                                 src={comic.image}
                                 alt={comic.title}
+                                width="300"
+                                height="450"
+                                loading={index < 6 ? "eager" : "lazy"}
+                                decoding="async"
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 onError={(e) => {
                                     e.target.src = 'https://via.placeholder.com/300x450?text=Comic+Cover'

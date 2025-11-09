@@ -3,6 +3,7 @@ import { useNavigate, Link, useLocation, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faPlay, faBookOpen, faClock, faFire, faStar } from '@fortawesome/free-solid-svg-icons'
+import SkeletonLoader from '../SkeletonLoader'
 
 const DetailComic = () => {
     const navigate = useNavigate()
@@ -21,7 +22,6 @@ const DetailComic = () => {
                 const cleanProcessedLink = processedLink?.startsWith('/') ? processedLink.substring(1) : processedLink
                 
                 const response = await axios.get(`https://www.sankavollerei.com/comic/comic/${cleanProcessedLink}`)
-                console.log("Fetched comic detail:", response.data)
 
                 if (!response.data) {
                     throw new Error('Tidak ada data komik yang ditemukan')
@@ -99,10 +99,28 @@ const DetailComic = () => {
 
     if (loading) {
         return (
-            <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen flex justify-center items-center transition-colors">
-                <div className="relative">
-                    <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-indigo-500"></div>
-                    <div className="absolute inset-0 rounded-full border-4 border-purple-500/20"></div>
+            <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen transition-colors">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    {/* Hero Skeleton */}
+                    <div className="animate-pulse mb-6">
+                        <div className="h-96 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-2xl relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                        </div>
+                    </div>
+                    {/* Content Skeleton */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="lg:col-span-2 space-y-6">
+                            <div className="animate-pulse h-48 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-2xl"></div>
+                            <div className="grid grid-cols-6 gap-3">
+                                {Array.from({ length: 18 }).map((_, i) => (
+                                    <div key={i} className="animate-pulse h-12 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-xl"></div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="space-y-4">
+                            <SkeletonLoader count={3} type="card" />
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -219,6 +237,11 @@ const DetailComic = () => {
                                 <img
                                     src={comic.image}
                                     alt={comic.title}
+                                    width="1200"
+                                    height="500"
+                                    loading="eager"
+                                    decoding="async"
+                                    fetchpriority="high"
                                     className="w-full h-full object-cover"
                                 />
                                 {/* Gradient Overlays */}
@@ -324,7 +347,6 @@ const DetailComic = () => {
                                         {String(chapter.chapter) === String(history?.lastChapter) && (
                                             <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
                                         )}
-                                        <div className="text-xs opacity-70 mb-1">Ch</div>
                                         {chapter.chapter}
                                     </button>
                                 ))}
@@ -353,6 +375,10 @@ const DetailComic = () => {
                                                         <img
                                                             src={item.image}
                                                             alt={item.title}
+                                                            width="96"
+                                                            height="128"
+                                                            loading="lazy"
+                                                            decoding="async"
                                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                             onError={(e) => {
                                                                 e.target.src = 'https://via.placeholder.com/300x450?text=Rekomendasi'

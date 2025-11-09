@@ -1,10 +1,155 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Juju-Manhwa - Baca Comic Bahasa Indonesia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Performance hints -->
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+
+    <!-- Primary Meta Tags -->
+    <title>Kanata-Toon - Baca Komik Gratis Bahasa Indonesia Terbaru</title>
+    <meta name="title" content="Kanata-Toon - Baca Komik Gratis Bahasa Indonesia Terbaru" />
+    <meta name="description" content="Baca komik online gratis di Kanata-Toon. Koleksi lengkap komik terbaru, trending, dan populer dalam bahasa Indonesia. Update setiap hari!" />
+    <meta name="keywords" content="komik indonesia, baca komik gratis, komik online, manga indonesia, manhwa indonesia, komik terbaru, komik trending" />
+    <meta name="author" content="Kanata-Toon" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="Indonesian" />
+    <meta name="revisit-after" content="1 days" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://comic.antidonasi.web.id/" />
+    <meta property="og:title" content="Kanata-Toon - Baca Komik Gratis Bahasa Indonesia Terbaru" />
+    <meta property="og:description" content="Baca komik online gratis di Kanata-Toon. Koleksi lengkap komik terbaru, trending, dan populer dalam bahasa Indonesia. Update setiap hari!" />
+    <meta property="og:image" content="https://comic.antidonasi.web.id/og-image.jpg" />
+    <meta property="og:site_name" content="Kanata-Toon" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://comic.antidonasi.web.id/" />
+    <meta property="twitter:title" content="Kanata-Toon - Baca Komik Gratis Bahasa Indonesia Terbaru" />
+    <meta property="twitter:description" content="Baca komik online gratis di Kanata-Toon. Koleksi lengkap komik terbaru, trending, dan populer dalam bahasa Indonesia. Update setiap hari!" />
+    <meta property="twitter:image" content="https://comic.antidonasi.web.id/og-image.jpg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://comic.antidonasi.web.id/" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://backend-comic.antidonasi.web.id" />
+    <link rel="dns-prefetch" href="https://backend-comic.antidonasi.web.id" />
+    <link rel="preconnect" href="https://www.sankavollerei.com" />
+    <link rel="dns-prefetch" href="https://www.sankavollerei.com" />
+
+    <!-- Optimize Google Fonts loading with font-display swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;600;700;800&display=swap" />
+    </noscript>
+
+    <!-- Inline Critical CSS for faster FCP -->
+    <style>
+      /* Critical CSS - Above the fold styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: rgb(255, 255, 255);
+        color: rgb(17, 24, 39);
+      }
+
+      [data-theme="dark"] body {
+        background-color: rgb(10, 10, 10);
+        color: rgb(243, 244, 246);
+      }
+
+      #root {
+        min-height: 100vh;
+      }
+
+      /* Prevent layout shift - reserve space for images */
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Loading state */
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(99, 102, 241, 0.2);
+        border-top-color: rgb(99, 102, 241);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        body {
+          -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation;
+        }
+      }
+
+      /* Prevent flash of unstyled content */
+      #root:empty {
+        background: rgb(255, 255, 255);
+      }
+
+      [data-theme="dark"] #root:empty {
+        background: rgb(10, 10, 10);
+      }
+
+      /* Optimize text rendering */
+      body {
+        text-rendering: optimizeSpeed;
+      }
+    </style>
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#3B82F6" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Kanata-Toon" />
+
+    <!-- Structured Data - Website -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kanata-Toon",
+      "url": "https://comic.antidonasi.web.id/",
+      "description": "Platform baca komik online gratis dalam bahasa Indonesia",
+      "inLanguage": "id-ID",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://comic.antidonasi.web.id/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -26,7 +26,6 @@ const SearchComic = () => {
         const debounceTimer = setTimeout(async () => {
             try {
                 const response = await axios.get(`https://www.sankavollerei.com/comic/search?q=${encodeURIComponent(searchQuery)}`)
-                console.log("Search results:", response.data)
 
                 // Process the search results similar to CardNewComic
                 const processedResults = response.data.data.map(comic => {
@@ -45,7 +44,6 @@ const SearchComic = () => {
                 setSearchResults(processedResults)
             } catch (err) {
                 setError('Terjadi kesalahan saat mencari komik')
-                console.error("Search error:", err)
             } finally {
                 setLoading(false)
             }
@@ -172,6 +170,10 @@ const SearchComic = () => {
                                     <img
                                         src={comic.thumbnail}
                                         alt={comic.title}
+                                        width="300"
+                                        height="450"
+                                        loading="lazy"
+                                        decoding="async"
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         onError={(e) => {
                                             e.target.src = 'https://via.placeholder.com/300x450?text=Comic+Cover'

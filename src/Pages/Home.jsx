@@ -5,10 +5,18 @@ import { faBookOpen } from '@fortawesome/free-solid-svg-icons'
 import SearchComic from '../components/Home/SearchComic'
 import CardTerbaruComic from '../components/Home/CardTerbaruComic'
 import CardTrendingComic from '../components/Home/CardTrendingComic'
+import SEO from '../components/SEO'
 
 const Home = () => {
   return (
-    <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen text-gray-900 dark:text-gray-100 transition-colors">
+    <>
+      <SEO
+        title="Kanata-Toon - Baca Komik Gratis Bahasa Indonesia Terbaru"
+        description="Baca komik online gratis di Kanata-Toon. Koleksi lengkap komik terbaru, trending, dan populer dalam bahasa Indonesia. Update setiap hari!"
+        keywords="komik indonesia, baca komik gratis, komik online, manga indonesia, manhwa indonesia"
+        url="https://comic.antidonasi.web.id/"
+      />
+      <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen text-gray-900 dark:text-gray-100 transition-colors">
       {/* Background decorative elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl"></div>
@@ -107,6 +115,7 @@ const Home = () => {
         </footer>
       </div>
     </div>
+    </>
   )
 }
 

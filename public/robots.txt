@@ -1,0 +1,21 @@
+# Kanata-Toon Robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /statistics
+
+# Sitemap location
+Sitemap: https://comic.antidonasi.web.id/sitemap.xml
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
