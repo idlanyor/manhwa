@@ -62,7 +62,7 @@ const ReadComic = () => {
             window.scrollTo(0, 0); 
 
             try {
-                const response = await axios.get(`https://www.sankavollerei.com/comic/chapter/${chapterLink}`);
+                const response = await axios.get(`https://www.sankavollerei.com/comic/chapter${chapterLink}`);
                 
                 const chapters = response.data.chapters || [];
                 const images = response.data.images || [];
