@@ -6,7 +6,6 @@ WORKDIR /app
 # Copy package configuration files
 COPY package.json ./
 COPY package-lock.json* ./
-COPY bun.lock ./
 
 # Install dependencies
 RUN npm install 
