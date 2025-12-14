@@ -75,8 +75,8 @@ const CardTerbaruComic = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="flex items-center gap-3 mb-8">
                     <div className="flex items-center gap-2">
-                        <div className="w-1 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></div>
-                        <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                        <div className="w-1 h-8 bg-gradient-to-b from-[#833AB4] via-[#E1306C] to-[#F77737] rounded-full"></div>
+                        <h2 className="text-3xl font-bold bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45] bg-clip-text text-transparent">
                             Terbaru Hari Ini
                         </h2>
                     </div>
@@ -105,8 +105,8 @@ const CardTerbaruComic = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="flex items-center gap-3 mb-8">
                 <div className="flex items-center gap-2">
-                    <div className="w-1 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></div>
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                    <div className="w-1 h-8 bg-gradient-to-b from-[#833AB4] via-[#E1306C] to-[#F77737] rounded-full"></div>
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45] bg-clip-text text-transparent">
                         Terbaru Hari Ini
                     </h2>
                 </div>
@@ -117,7 +117,7 @@ const CardTerbaruComic = () => {
                 {comics.map((comic, index) => (
                     <div
                         key={comic.title}
-                        className="group relative bg-white/80 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-indigo-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20 hover:-translate-y-2"
+                        className="group relative bg-white/80 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-[#E1306C]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#E1306C]/20 hover:-translate-y-2"
                         style={{ animationDelay: `${index * 50}ms` }}
                     >
                         <div className="relative aspect-[2/3] overflow-hidden">
@@ -147,12 +147,12 @@ const CardTerbaruComic = () => {
                         </div>
 
                         <div className="p-4">
-                            <h3 className="font-bold text-sm md:text-base line-clamp-2 mb-3 text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors min-h-[2.5rem]">
+                            <h3 className="font-bold text-sm md:text-base line-clamp-2 mb-3 text-gray-900 dark:text-gray-100 group-hover:text-[#E1306C] dark:group-hover:text-[#E1306C] transition-colors min-h-[2.5rem]">
                                 {comic.title}
                             </h3>
                             <button
                                 onClick={() => handleComicDetail(comic)}
-                                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 rounded-lg hover:from-indigo-500 hover:to-purple-500 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-indigo-500/50 flex items-center justify-center gap-2"
+                                className="w-full bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white py-2 rounded-lg hover:from-[#833AB4]/90 hover:via-[#E1306C]/90 hover:to-[#F77737]/90 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-[#E1306C]/50 flex items-center justify-center gap-2"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />

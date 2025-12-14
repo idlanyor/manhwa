@@ -12,7 +12,6 @@ import StatisticsPage from './Pages/StatisticsPage'
 import usePageTracking from './hooks/usePageTracking'
 
 function AppContent() {
-  // Track page views
   usePageTracking()
 
   return (

@@ -19,9 +19,9 @@ const DetailComic = () => {
     useEffect(() => {
         const fetchComicDetail = async () => {
             try {
-                const cleanProcessedLink = processedLink?.startsWith('/') ? processedLink.substring(1) : processedLink
+                const cleanSlug = processedLink?.startsWith('/') ? processedLink.substring(1) : (processedLink || slug)
                 
-                const response = await axios.get(`https://www.sankavollerei.com/comic/comic/${cleanProcessedLink}`)
+                const response = await axios.get(`https://www.sankavollerei.com/comic/comic/${cleanSlug}`)
 
                 if (!response.data) {
                     throw new Error('Tidak ada data komik yang ditemukan')
@@ -34,9 +34,11 @@ const DetailComic = () => {
                 setError(err.response?.data?.message || err.message || 'Terjadi kesalahan saat mengambil detail komik')
                 setLoading(false)
                 setComicDetail({
+                    title: comic?.title || "Unknown",
                     synopsis: "Synopsis tidak tersedia.",
                     chapters: [],
-                    creator: "Unknown"
+                    creator: "Unknown",
+                    metadata: {}
                 })
             }
         }
@@ -74,7 +76,7 @@ const DetailComic = () => {
             }
         };
 
-        if (processedLink) {
+        if (processedLink || slug) {
             fetchComicDetail()
         } else {
             setError('Link komik tidak valid')
@@ -148,7 +150,7 @@ const DetailComic = () => {
         )
     }
 
-    if (!comic) {
+    if (!comic && !comicDetail) {
         return (
             <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen transition-colors">
                 <div className="flex justify-center items-center min-h-screen p-4">
@@ -178,12 +180,14 @@ const DetailComic = () => {
             return;
         }
         
-        navigate(`/read-comic/${slug}/chapter-${chapterToRead.chapter}`, { 
+        const chapterSlug = chapterToRead.slug || `chapter-${chapterToRead.chapter}`;
+        
+        navigate(`/read-comic/${slug}/${chapterSlug}`, { 
             state: { 
-                chapterLink: chapterToRead.link,
-                comicTitle: comic.title,
+                chapterLink: chapterToRead.slug,
+                comicTitle: comicDetail?.title || comic?.title,
                 chapterNumber: chapterToRead.chapter,
-                comicDetailState: { comic: comic, processedLink: processedLink }, 
+                comicDetailState: { comic: comic || comicDetail, processedLink: processedLink || slug }, 
             } 
         })
     }
@@ -191,7 +195,7 @@ const DetailComic = () => {
     const handleContinueReading = () => {
         if (history) {
             const chapterData = {
-                link: history.lastChapterLink,
+                slug: history.lastChapterSlug || history.lastChapterLink,
                 chapter: history.lastChapter,
             }
             handleReadComic(chapterData)
@@ -215,7 +219,8 @@ const DetailComic = () => {
         window.location.reload(); 
     }
 
-    const isLatestChapter = history?.lastChapter === comic.chapter;
+    const latestChapter = comicDetail?.chapters?.[0]?.chapter;
+    const isLatestChapter = history?.lastChapter === latestChapter;
 
     return (
         <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen text-gray-900 dark:text-gray-100 transition-colors py-8">
@@ -235,8 +240,8 @@ const DetailComic = () => {
                             {/* Background Image */}
                             <div className="absolute inset-0">
                                 <img
-                                    src={comic.image}
-                                    alt={comic.title}
+                                    src={comicDetail?.image || comic?.image}
+                                    alt={comicDetail?.title || comic?.title}
                                     width="1200"
                                     height="500"
                                     loading="eager"
@@ -253,19 +258,26 @@ const DetailComic = () => {
                             <div className="relative z-10 p-8 md:p-12 min-h-[500px] flex flex-col justify-end">
                                 {/* Title */}
                                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-white drop-shadow-2xl">
-                                    {comic.title}
+                                    {comicDetail?.title || comic?.title}
                                 </h1>
 
                                 {/* Badges */}
                                 <div className="flex flex-wrap gap-3 mb-6">
-                                    <div className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
-                                        <FontAwesomeIcon icon={faBookOpen} className="text-white" />
-                                        <span className="text-sm font-semibold text-white">{comic.chapter}</span>
-                                    </div>
-                                    {comic.source && (
+                                    {comicDetail?.metadata?.type && (
+                                        <div className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
+                                            <FontAwesomeIcon icon={faBookOpen} className="text-white" />
+                                            <span className="text-sm font-semibold text-white">{comicDetail.metadata.type}</span>
+                                        </div>
+                                    )}
+                                    {comicDetail?.metadata?.status && (
                                         <div className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
                                             <FontAwesomeIcon icon={faStar} className="text-white" />
-                                            <span className="text-sm font-semibold text-white">{comic.source}</span>
+                                            <span className="text-sm font-semibold text-white">{comicDetail.metadata.status}</span>
+                                        </div>
+                                    )}
+                                    {comicDetail?.metadata?.author && (
+                                        <div className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
+                                            <span className="text-sm font-semibold text-white">By {comicDetail.metadata.author}</span>
                                         </div>
                                     )}
                                 </div>

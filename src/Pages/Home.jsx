@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBookOpen } from '@fortawesome/free-solid-svg-icons'
+import { faBookOpen, faFire, faClock, faStar, faRocket } from '@fortawesome/free-solid-svg-icons'
 import SearchComic from '../components/Home/SearchComic'
 import CardTerbaruComic from '../components/Home/CardTerbaruComic'
 import CardTrendingComic from '../components/Home/CardTrendingComic'
@@ -16,12 +16,18 @@ const Home = () => {
         keywords="komik indonesia, baca komik gratis, komik online, manga indonesia, manhwa indonesia"
         url="https://comic.antidonasi.web.id/"
       />
-      <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen text-gray-900 dark:text-gray-100 transition-colors">
-      {/* Background decorative elements */}
+      <div className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-[#0a0a0a] dark:via-[#121212] dark:to-[#1a1a1a] min-h-screen text-gray-900 dark:text-gray-100 transition-colors overflow-hidden">
+      {/* Animated Background decorative elements - Instagram Colors */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 right-1/3 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#833AB4]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#E1306C]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 right-1/3 w-96 h-96 bg-[#F77737]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/4 right-1/2 w-64 h-64 bg-[#FCAF45]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+        
+        {/* Floating particles */}
+        <div className="absolute top-20 left-10 w-2 h-2 bg-[#833AB4]/30 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
+        <div className="absolute top-40 right-20 w-3 h-3 bg-[#E1306C]/30 rounded-full animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 left-1/3 w-2 h-2 bg-[#F77737]/30 rounded-full animate-bounce" style={{ animationDuration: '5s', animationDelay: '2s' }}></div>
       </div>
 
       {/* Content */}
@@ -45,7 +51,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-bold mb-3">
-              <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45] bg-clip-text text-transparent">
                 Jelajahi Lebih Banyak
               </span>
             </h2>
@@ -59,21 +65,21 @@ const Home = () => {
               to="/pustaka"
               className="group relative"
             >
-              <div className="relative overflow-hidden rounded-2xl border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 max-w-md">
+              <div className="relative overflow-hidden rounded-2xl border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 backdrop-blur-sm hover:border-[#E1306C]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#E1306C]/20 hover:-translate-y-2 max-w-md">
                 {/* Gradient Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#833AB4]/20 via-[#E1306C]/20 to-[#F77737]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                 {/* Content */}
                 <div className="relative p-8">
                   {/* Icon */}
                   <div className="mb-6 flex justify-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#F77737] shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <FontAwesomeIcon icon={faBookOpen} className="text-3xl text-white" />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent text-center">
+                  <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45] bg-clip-text text-transparent text-center">
                     Pustaka Komik
                   </h3>
 
@@ -83,7 +89,7 @@ const Home = () => {
                   </p>
 
                   {/* Arrow */}
-                  <div className="flex items-center justify-center text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-white transition-colors">
+                  <div className="flex items-center justify-center text-gray-600 dark:text-gray-400 group-hover:text-[#E1306C] dark:group-hover:text-white transition-colors">
                     <span className="text-sm font-semibold mr-2">Lihat Semua</span>
                     <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -92,7 +98,7 @@ const Home = () => {
                 </div>
 
                 {/* Bottom Accent */}
-                <div className="h-1 bg-gradient-to-r from-blue-600 to-cyan-600"></div>
+                <div className="h-1 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45]"></div>
               </div>
             </Link>
           </div>

@@ -62,7 +62,8 @@ const ReadComic = () => {
             window.scrollTo(0, 0); 
 
             try {
-                const response = await axios.get(`https://www.sankavollerei.com/comic/chapter${chapterLink}`);
+                const cleanChapterLink = chapterLink?.startsWith('/') ? chapterLink : `/${chapterLink}`;
+                const response = await axios.get(`https://www.sankavollerei.com/comic/chapter${cleanChapterLink}`);
                 
                 const chapters = response.data.chapters || [];
                 const images = response.data.images || [];
@@ -159,7 +160,8 @@ const ReadComic = () => {
     const handleNextChapter = () => {
         const nextChapterSlug = navigation.nextChapter;
         if (nextChapterSlug) {
-            const newChapterNumber = nextChapterSlug.split('-').pop(); 
+            const chapterMatch = nextChapterSlug.match(/chapter-(\d+)$/i);
+            const newChapterNumber = chapterMatch ? `Chapter ${chapterMatch[1]}` : nextChapterSlug.split('-').pop();
             
             navigate(`/read-comic/${slug}/${nextChapterSlug}`, { 
                 state: { 
@@ -167,7 +169,8 @@ const ReadComic = () => {
                     comicTitle: comicTitle, 
                     chapterNumber: newChapterNumber,
                     comicDetailState: comicDetailState
-                } 
+                },
+                replace: false
             });
         }
     };
@@ -175,7 +178,8 @@ const ReadComic = () => {
     const handlePrevChapter = () => {
         const prevChapterSlug = navigation.previousChapter;
         if (prevChapterSlug) {
-            const newChapterNumber = prevChapterSlug.split('-').pop(); 
+            const chapterMatch = prevChapterSlug.match(/chapter-(\d+)$/i);
+            const newChapterNumber = chapterMatch ? `Chapter ${chapterMatch[1]}` : prevChapterSlug.split('-').pop();
 
             navigate(`/read-comic/${slug}/${prevChapterSlug}`, { 
                 state: { 
@@ -183,7 +187,8 @@ const ReadComic = () => {
                     comicTitle: comicTitle, 
                     chapterNumber: newChapterNumber,
                     comicDetailState: comicDetailState 
-                } 
+                },
+                replace: false
             });
         }
     };

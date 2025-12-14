@@ -77,12 +77,12 @@ const CardTrendingComic = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex items-center gap-3 mb-8">
           <div className="flex items-center gap-2">
-            <div className="w-1 h-8 bg-gradient-to-b from-orange-500 to-red-500 rounded-full"></div>
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+            <div className="w-1 h-8 bg-gradient-to-b from-[#F77737] to-[#FCAF45] rounded-full"></div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-[#F77737] to-[#FCAF45] bg-clip-text text-transparent">
               Trending Hari Ini
             </h2>
           </div>
-          <svg className="w-6 h-6 text-orange-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+          <svg className="w-6 h-6 text-[#F77737] animate-pulse" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clipRule="evenodd"/>
           </svg>
           <div className="flex-1 h-px bg-gradient-to-r from-gray-300 dark:from-gray-700 to-transparent"></div>
@@ -110,12 +110,12 @@ const CardTrendingComic = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="flex items-center gap-2">
-          <div className="w-1 h-8 bg-gradient-to-b from-orange-500 to-red-500 rounded-full"></div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+          <div className="w-1 h-8 bg-gradient-to-b from-[#F77737] to-[#FCAF45] rounded-full"></div>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-[#F77737] to-[#FCAF45] bg-clip-text text-transparent">
             Trending Hari Ini
           </h2>
         </div>
-        <svg className="w-6 h-6 text-orange-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-6 h-6 text-[#F77737] animate-pulse" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clipRule="evenodd"/>
         </svg>
         <div className="flex-1 h-px bg-gradient-to-r from-gray-300 dark:from-gray-700 to-transparent"></div>
@@ -125,7 +125,7 @@ const CardTrendingComic = () => {
         {comics.map((comic, index) => (
           <div
             key={comic.title}
-            className="group relative bg-white/80 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20 hover:-translate-y-2"
+            className="group relative bg-white/80 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-[#F77737]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#F77737]/20 hover:-translate-y-2"
             style={{ animationDelay: `${index * 50}ms` }}
           >
             {/* Trending Badge */}
@@ -171,12 +171,12 @@ const CardTrendingComic = () => {
             </div>
 
             <div className="p-4">
-              <h3 className="font-bold text-sm md:text-base line-clamp-2 mb-3 text-gray-900 dark:text-gray-100 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors min-h-[2.5rem]">
+              <h3 className="font-bold text-sm md:text-base line-clamp-2 mb-3 text-gray-900 dark:text-gray-100 group-hover:text-[#F77737] dark:group-hover:text-[#F77737] transition-colors min-h-[2.5rem]">
                 {comic.title}
               </h3>
               <button
                 onClick={() => handleComicDetail(comic)}
-                className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white py-2 rounded-lg hover:from-orange-500 hover:to-red-500 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-orange-500/50 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-[#F77737] to-[#FCAF45] text-white py-2 rounded-lg hover:from-[#F77737]/90 hover:to-[#FCAF45]/90 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-[#F77737]/50 flex items-center justify-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />

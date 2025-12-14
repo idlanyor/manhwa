@@ -79,10 +79,10 @@ const SearchComic = () => {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
             {/* Hero Search Section */}
             <div className="relative mb-10">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 via-purple-600/20 to-pink-600/20 blur-3xl -z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#833AB4]/20 via-[#E1306C]/20 to-[#FCAF45]/20 blur-3xl -z-10"></div>
 
                 <div className="text-center mb-8">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45] bg-clip-text text-transparent mb-4">
                         KanataToon
                     </h1>
                     <p className="text-gray-600 dark:text-gray-400 text-lg">Temukan dan baca ribuan komik favorit Anda</p>
@@ -91,7 +91,7 @@ const SearchComic = () => {
                 {/* Modern Search Box */}
                 <div className="relative max-w-3xl mx-auto">
                     <div className="relative group">
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
                         <div className="relative flex items-center bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-300 dark:border-gray-700 overflow-hidden">
                             <svg className="w-6 h-6 text-gray-400 dark:text-gray-400 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -105,7 +105,7 @@ const SearchComic = () => {
                             />
                             {loading && (
                                 <div className="px-6">
-                                    <svg className="animate-spin h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24">
+                                    <svg className="animate-spin h-6 w-6 text-[#E1306C]" fill="none" viewBox="0 0 24 24">
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
@@ -163,7 +163,7 @@ const SearchComic = () => {
                         {searchResults.map((comic, index) => (
                             <div
                                 key={comic.title}
-                                className="group relative bg-white/80 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-indigo-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20 hover:-translate-y-2"
+                                className="group relative bg-white/80 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-[#E1306C]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#E1306C]/20 hover:-translate-y-2"
                                 style={{ animationDelay: `${index * 50}ms` }}
                             >
                                 <div className="relative aspect-[2/3] overflow-hidden">
@@ -180,19 +180,19 @@ const SearchComic = () => {
                                         }}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div className="absolute top-2 right-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                                    <div className="absolute top-2 right-2 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                                         {comic.type}
                                     </div>
                                 </div>
 
                                 <div className="p-4">
-                                    <h3 className="font-bold text-sm md:text-base line-clamp-2 mb-2 text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                    <h3 className="font-bold text-sm md:text-base line-clamp-2 mb-2 text-gray-900 dark:text-gray-100 group-hover:text-[#E1306C] dark:group-hover:text-[#E1306C] transition-colors">
                                         {comic.title}
                                     </h3>
                                     <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 line-clamp-1">{comic.genre}</p>
                                     <button
                                         onClick={() => handleComicDetail(comic)}
-                                        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 rounded-lg hover:from-indigo-500 hover:to-purple-500 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-indigo-500/50"
+                                        className="w-full bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white py-2 rounded-lg hover:from-[#833AB4]/90 hover:via-[#E1306C]/90 hover:to-[#F77737]/90 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-[#E1306C]/50"
                                     >
                                         Lihat Detail
                                     </button>
