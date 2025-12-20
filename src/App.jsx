@@ -17,15 +17,17 @@ function AppContent() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/terbaru" element={<TerbaruPage />} />
-        <Route path="/trending" element={<TrendingPage />} />
-        <Route path="/pustaka" element={<PustakaPage />} />
-        <Route path="/statistics" element={<StatisticsPage />} />
-        <Route path="/detail-comic/:slug" element={<DetailComic />} />
-        <Route path="/read-comic/:slug/:chapterSlug" element={<ReadComic />} />
-      </Routes>
+      <div className="pb-20 md:pb-0">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/terbaru" element={<TerbaruPage />} />
+          <Route path="/trending" element={<TrendingPage />} />
+          <Route path="/pustaka" element={<PustakaPage />} />
+          <Route path="/statistics" element={<StatisticsPage />} />
+          <Route path="/detail-comic/:slug" element={<DetailComic />} />
+          <Route path="/read-comic/:slug/:chapterSlug" element={<ReadComic />} />
+        </Routes>
+      </div>
     </>
   )
 }
